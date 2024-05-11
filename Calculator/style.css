@@ -4,3 +4,38 @@
 @tailwind components;
 @tailwind utilities; 
 
+.button {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(255, 255, 63);
+    border-radius: 10px;
+}
+#C-btn {
+    background-color: red;
+}
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+   
+}
+.input input {
+   border: 2px solid black;
+   background-color: rgb(114, 109, 109);
+   border-radius: 5px;
+   display: flex;
+   text-align: right;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+      display: block;
+      background-color: lightblue;
+    }
+  }
