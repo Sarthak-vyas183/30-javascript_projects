@@ -10,14 +10,22 @@ Array.from(buttons).forEach((button)=> {
             document.querySelector(".input-box").value = string;
 
         } else if(e.target.innerHTML == "C") {
-            console.log(e.target.innerHTML)
            string = "";
-            document.querySelector(".input-box").value = string;
+           document.querySelector(".input-box").value = string;
+           lastCharisOperator = false;
         } else {
-            console.log(e.target)
+           const isOperator = ["+", "-", "*", "/"].includes(e.target.innerHTML);
+            if (isOperator && lastCharIsOperator) {
+                alert("No Two operator can come together")
+                 return;
+            } 
+           
             string += e.target.innerHTML;
             document.querySelector(".input-box").value = string;
+            lastCharIsOperator = isOperator;
         }
+         console.log( string.charAt(0))
+       
         
     })
 })
