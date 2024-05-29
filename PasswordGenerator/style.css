@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-box p {
+    margin-left: -60px;
+}
+#copy-img {
+    transition: 2s;
+}

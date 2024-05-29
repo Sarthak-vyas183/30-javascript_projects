@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>password Generator</title>
+    <link rel="stylesheet" href="output.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <section class=" main w-screen h-screen bg-blue-950">
+        <div class="left flex justify-center items-center w-4/6 h-full">
+          <div class="info w-2/3 h-1/2">
+            <h1 class="font-semibold text-white text-3xl">Generate a </h1>
+            <h1 class="mt-2 font-semibold text-green-300 text-3xl">Random Password</h1> 
+            <p  class=" mt-4 mb-4 bg-green-300 w-56 h-1"></p>
+
+             <div class="flex input-box">
+                <input id="input" type="text" placeholder="Password" class="p-4 mt-4 bg-white h-12 w-96 outline-none rounded"> 
+                <p class="mt-4  w-6 h-12 flex items-center"><img onclick="copy()" id="copy-img" class="h-6 w-full" src="./rpg_img/copy.png" alt=""></p> 
+                <label class="mt-4 ml-10 text-white " for="passlength">Password length</label>
+                <input maxlength="2" id="passlength" class="p-4 rounded flex justify-center items-center mt-4 h-12 w-16" type="text" value="">
+                 <span class="mt-4 ml-2">
+                    <i id="pluse" class="fa-solid fa-plus text-white"></i>
+                    <i id="minus" class="fa-solid fa-minus text-white"></i>
+                 </span>
+            </div>
+             
+        <button onclick="password()" class="p-2 flex items-center mt-6 rounded w-48 h-12 bg-green-700"><img class="rounded w-6 h-full" src="./rpg_img/generate.png" alt=""><p>Generate Password</p></button>
+        <div>
+        </div>
+    </section>
+</body>
+<script src="app.js"></script>
+</html>
