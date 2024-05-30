@@ -10,34 +10,34 @@
               <div class="min-w-[25vw]  card rounded-lg">
 
                     <section class="title flex p-2 justify-evenly my-4">
-                        <input class="w-[80%] h-7 px-4 flex items-center rounded-full outline-none " type="text" placeholder="Enter City Name">
-                        <img class="w-5 h-5 mt-2" src="./images/search.png" alt="">
+                        <input id="cityName" class="w-[80%] h-7 px-4 flex items-center rounded-full outline-none " value="" type="text" placeholder="Enter City Name">
+                        <img id="search-btn" class="w-7 h-7 bg-white" src="./images/searchbtn.png" alt="">
                     </section>
 
-                    <!-- <section class="img w-full min-h-[40%]   flex-col">
-                         <h1 class="flex justify-center items-center"><img src="./images/rain.png" alt="loading..."></h1>
-                         <h1 class="flex justify-center items-center"><span class="text-2xl font-medium">Bhopal</span></h1>
-                         <h1 class="flex justify-center items-center"><span class="text-lg font-semibold">21°C</span></h1>
+                    <section class="img w-full max-h-[40%]  flex-col">
+                         <h1 class="flex justify-center items-center"><img class="weather-icon" src="" alt=""></h1>
+                         <h1  class="flex justify-center items-center"><span id="city" class="text-2xl font-medium"></span></h1>
+                         <h1  class="flex justify-center items-center"><span id="cityTemp" class="text-lg font-semibold"></span></h1>
                     </section>
 
 
                     <section class="flex justify-between px-4  mt-10 mb-10">
-                        <div class="humidity flex items-center">
-                            <img class="w-7 h-7 mr-2" src="./images/humidity.png" alt="">
+                        <div class="flex items-center">
+                            <img class="w-7 mr-2" src="./images/humidity.png" alt="">
                             <div>
-                                <p class="humidity-info">15%</p>
-                                <p>Humidity</p>
+                                <p class=" humidity"></p>
+                                <p class="humidity-word"></p>
                             </div>
                         </div>
 
-                        <div class="wind flex items-center">
-                            <img class="w-7 h-7 mr-2" src="./images/wind.png" alt="">
+                        <div class="flex items-center">
+                            <img class="w-7  mr-2" src="./images/wind.png" alt="">
                             <div>
-                                <p class="wind-info">14 km/h</p>
-                                <p>Wind Speed</p>
+                                <p class="wind-info wind"></p>
+                                <p class="Wind-Speed"></p>
                             </div>
                         </div>
-                    </section> -->
+                    </section>
 
         <div>
                         
@@ -47,8 +47,44 @@
      </div>
 </body>
 <script>
-const apikey = "6ee4c3ae67c96639bd291be661bbd109";
-const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric";
+
+const CheckWeather = (city)=>{
+    const apikey = "6ee4c3ae67c96639bd291be661bbd109";
+    const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric";
+    fetch(`${apiurl}&q=${city}&appid=${apikey}`)
+    .then(raw => raw.json())  
+    .then(res => {
+        console.log(res)
+        document.querySelector("#city").innerHTML = res.name;
+        document.querySelector('#cityTemp').innerHTML = Math.round(res.main.temp ) + "°C";
+        document.querySelector('.humidity').innerHTML = res.main.humidity + "%";
+        document.querySelector('.wind').innerHTML = res.wind.speed +"km/h"; 
+        document.querySelector('.wind-speed').innerHTML = "Wind Speed"; 
+        document.querySelector('.humidity-word').innerHTML = "Humidity"; 
+
+     if(res.weather[0].main == 'Clouds') {
+        document.querySelector('.weather-icon').src = './images/clouds.png';
+     } else if(res.weather[0].main == 'Clear') {
+        document.querySelector('.weather-icon').src = './images/clear.png';
+     } else if(res.weather[0].main == 'Rain') {
+        document.querySelector('.weather-icon').src = './images/rain.png';
+     } else if(res.weather[0].main == 'Drizzle') {
+        document.querySelector('.weather-icon').src = './images/drizzle.png';
+     } else if(res.weather[0].main == 'Mist') {
+        document.querySelector('.weather-icon').src = './images/mist.png';
+     } else {
+        document.querySelector('.weather-icon').src = './images/clouds.png';
+
+     }
+    })  
+}
+
+let city_name = document.querySelector("#cityName")
+document.querySelector("#search-btn").addEventListener("click" , ()=>{
+    CheckWeather(city_name.value);
+    city_name.value = "";
+})
+
 
 </script>
 </html>
